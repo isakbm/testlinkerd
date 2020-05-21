@@ -9,7 +9,7 @@ You can either clone manually like so:
 
 ```git clone https://github.com/isakbm/testlinkerd.git github.com/isakbm/testlinkerd```
 
-or you use go get:
+or use go get:
 
 ```go get github.com/isakbm/testlinkerd```
 
