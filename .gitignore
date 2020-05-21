@@ -1,1 +1,6 @@
 services/*/service
+**/tls.crt
+**/tls.key
+**/tls.srl
+**/.image.was.built
+.pkg
