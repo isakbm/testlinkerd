@@ -23,4 +23,4 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
         - --target
-        - world-svc:50040
+        - world:50040

@@ -5,23 +5,20 @@ metadata:
   namespace: testlinkerd
   labels:
     app.kubernetes.io/name: world
-    app.kubernetes.io/part-of: testlinkerd
-    app.kubernetes.io/version: v10
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: world-svc
+      app: world
   template:
     metadata:
       labels:
-        app: world-svc
+        app: world
     spec:
-      serviceAccountName: world
       containers:
       - image: testlinkerd/world
         imagePullPolicy: IfNotPresent
-        name: world-svc
+        name: world
         ports:
         - containerPort: 50040
           name: grpc
@@ -29,19 +26,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: world-svc
+  name: world
   namespace: testlinkerd
 spec:
   selector:
-    app: world-svc
+    app: world
   ports:
   - name: grpc
     port: 50040
     targetPort: 50040
----
-kind: ServiceAccount
-apiVersion: v1
-metadata:
-  name: world
-  namespace: testlinkerd
-
