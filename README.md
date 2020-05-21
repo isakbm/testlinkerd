@@ -26,12 +26,6 @@ or use go get:
 
 ```go get github.com/isakbm/testlinkerd```
 
-### Deploy
-
-To deploy simply run
-
-```./deploy```
-
 ### Requirements
 
 - [go]
@@ -41,6 +35,13 @@ To deploy simply run
 - [linkerd]
 - [protoc]
 - [protoc-gen-go]
+
+### Deploy
+
+To deploy simply run
+
+```./deploy```
+
 
 [go]: https://golang.org/
 [gRPC]: https://grpc.io/
