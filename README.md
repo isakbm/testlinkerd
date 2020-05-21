@@ -1,5 +1,5 @@
 # testlinkerd
-Simple testing of linkerd with minikube and gRPC, other examples seemed a bit too bloated.
+Simple testing of linkerd with minikube and gRPC, other examples seemed a bit too bloated. Should work on linux. Has been tested on ubuntu bionic.
 
 ---
 
