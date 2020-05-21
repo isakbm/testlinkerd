@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: world
+  namespace: testlinkerd
+  labels:
+    app.kubernetes.io/name: world
+    app.kubernetes.io/part-of: testlinkerd
+    app.kubernetes.io/version: v10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: world-svc
+  template:
+    metadata:
+      labels:
+        app: world-svc
+    spec:
+      serviceAccountName: world
+      containers:
+      - image: testlinkerd/world
+        imagePullPolicy: IfNotPresent
+        name: world-svc
+        ports:
+        - containerPort: 50040
+          name: grpc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: world-svc
+  namespace: testlinkerd
+spec:
+  selector:
+    app: world-svc
+  ports:
+  - name: grpc
+    port: 50040
+    targetPort: 50040
+---
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: world
+  namespace: testlinkerd
+

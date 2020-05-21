@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = "pkg/world";
+
+package world;
+
+// comment
+
+service World {
+    rpc SayHello(HelloReq) returns (HelloResp);
+}
+
+message HelloReq {
+    string Msg = 1;
+}
+
+message HelloResp {
+    string Msg = 1;
+}

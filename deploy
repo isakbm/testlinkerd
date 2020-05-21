@@ -1,0 +1,47 @@
+#!/bin/bash
+
+echo ""
+
+echo "checking minikube:"
+
+for field in Host Kubelet APIServer; do
+    fmt="'{{."${field}"}}'"
+    status=$(minikube status --format $fmt)
+    echo "    " $field : $status
+    test "$status" = "'Running'" || echo "make sure minikube is started correctly"
+    test "$status" = "'Running'" || exit $?
+done
+
+echo ""
+
+for cmd in kubectl kustomize linkerd; do
+    echo "checking " ${cmd}":"
+    echo "    " $(${cmd} &> /dev/null && echo "ok" || echo "missing")
+    ${cmd} &> /dev/null || exit $?
+    echo ""
+done
+
+echo "making ..."
+make
+
+echo "deploying ..."
+echo ""
+
+kustomize build k8s/deployment | linkerd inject - | kubectl apply -f -
+
+echo ""
+
+echo "the cluster should now be up and running"
+echo ""
+echo "1. check pods"
+echo "    kubectl -n testlinkerd get pods"
+echo ""
+echo "2. scale the world service"
+echo "    kubectl -n testlinkerd scale deployment world --replicas 2"
+echo ""
+echo "3. check that one more pod has been added and READY = 2/2"
+echo "    kubectl -n testlinkerd get pods"
+echo ""
+echo "4. notice how the requests made by the hello pod are split between the two pods"
+echo "    kubectl -n testlinkerd logs -f world-<hash>"
+

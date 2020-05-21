@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+  namespace: testlinkerd
+  labels:
+    app.kubernetes.io/name: hello
+    app.kubernetes.io/part-of: testlinkerd
+    app.kubernetes.io/version: v10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello
+        image: testlinkerd/hello
+        imagePullPolicy: IfNotPresent
+        args:
+        - --target
+        - world-svc:50040
