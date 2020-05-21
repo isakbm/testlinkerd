@@ -1,5 +1,5 @@
 # testlinkerd
-Simple testing of [linkerd](https://linkerd.io/2/getting-started/) with [minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) and [gRPC](https://grpc.io/), other examples seemed a bit too bloated. Should work on linux. Has been tested on ubuntu bionic.
+Simple testing of [linkerd] with [minikube] and [gRPC], other examples seemed a bit too bloated. Should work on linux. Has been tested on ubuntu bionic.
 
 ---
 
@@ -21,10 +21,15 @@ To deploy simply run
 
 ### Requirements
 
-- [go 1.13](go)
-- [kubectl]()
-- [minikube]()
-- [kustomize]()
-- [linkerd]()
+- [go]
+- [kubectl]
+- [minikube]
+- [kustomize]
+- [linkerd]
 
-[go]: nrk.no
+[go]: https://golang.org/
+[gRPC]: https://grpc.io/
+[linkerd]: https://linkerd.io/2/getting-started/
+[minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
+[kustomize]: https://kustomize.io/
+[kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
