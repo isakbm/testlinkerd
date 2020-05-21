@@ -10,6 +10,10 @@ There are two services
 
 Thanks to [linkerd], the **world** service can be scaled up, and requests from the **hello** service will be load balanced accross them automatically. This is nontrivial since [gRPC] uses http/2, and therefore requires request based load balancing, meaning that traditional connect based load balancing will not suffice. Yay for [linkerd].
 
+Don't forget to view the linkerd dashboard once you're done
+
+```linkerd dashboard```
+
 ---
 
 ### Clone
