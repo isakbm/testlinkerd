@@ -26,6 +26,8 @@ To deploy simply run
 - [minikube]
 - [kustomize]
 - [linkerd]
+- [protoc]
+- [protoc-gen-go]
 
 [go]: https://golang.org/
 [gRPC]: https://grpc.io/
@@ -33,3 +35,5 @@ To deploy simply run
 [minikube]: https://kubernetes.io/docs/tasks/tools/install-minikube/
 [kustomize]: https://kustomize.io/
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
+[protoc]:  https://developers.google.com/protocol-buffers
+[protoc-gen-go]: https://github.com/golang/protobuf
