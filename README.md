@@ -1,6 +1,6 @@
 # testlinkerd
 
-Minial example used to test [linkerd] with [gRPC] services on a [kubernetes] cluster deployed using [minikube].
+Minimal example to test [linkerd] with [gRPC] services on a [kubernetes] cluster deployed using [minikube].
 
 There are two services
 
