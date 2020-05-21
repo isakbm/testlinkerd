@@ -1,9 +1,27 @@
 
-.PHONY: all hello world clean
-all: hello world
+.PHONY: all hello world web clean
+all: hello world web
 
 NAMESPACE := testlinkerd
 CA_DIR := .ca
+
+# web
+
+web: services/web/.image.was.built services/web/tls.crt
+
+services/web/.image.was.built: services/web/Dockerfile services/web/service
+	./minidocker build -t testlinkerd/web $(@D)
+	touch $@
+
+services/web/service: pkg/world/* pkg/world/world.pb.go services/web/main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+		-tags netgo \
+		-installsuffix netgo \
+		-ldflags "-s -w" \
+		-pkgdir .pkg \
+		-i \
+		-o ./$@ \
+		./$(@D)/*.go 
 
 # hello
 

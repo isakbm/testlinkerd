@@ -2,3 +2,5 @@ resources:
   - namespace.yaml
   - world.yaml
   - hello.yaml
+  - web.yaml
+  - ingress.yaml
