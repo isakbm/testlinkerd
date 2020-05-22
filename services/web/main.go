@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
 	"flag"
 	"fmt"
 	"log"
-	"net"
 	"net/http"
 
 	"github.com/testlinkerd/pkg/world"
@@ -13,7 +13,10 @@ import (
 )
 
 var (
-	target = flag.String("target", ":50040", "specify target")
+	worldTarget = flag.String("target", ":50040", "specify target")
+	lisPort     = flag.String("lisPort", "8080", "override the listen port")
+	creds       = flag.String("creds", "/creds", "specify directory of credential keypair")
+	servername  = flag.String("servername", "web", "override servername")
 )
 
 func main() {
@@ -21,7 +24,7 @@ func main() {
 	flag.Parse()
 
 	cc, err := grpc.Dial(
-		*target,
+		*worldTarget,
 		grpc.WithInsecure(),
 	)
 	if err != nil {
@@ -31,10 +34,20 @@ func main() {
 
 	worldClient := world.NewWorldClient(cc)
 
-	lis, err := net.Listen("tcp", ":8080")
+	cert, err := tls.LoadX509KeyPair(*creds+"/tls.crt", *creds+"/tls.key")
 	if err != nil {
 		panic(err)
 	}
+
+	lis, err := tls.Listen("tcp", ":"+*lisPort, &tls.Config{Certificates: []tls.Certificate{cert}})
+	if err != nil {
+		panic(err)
+	}
+
+	// lis, err := net.Listen("tcp", ":"+*lisPort)
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	http.HandleFunc(
 		"/sayHello",

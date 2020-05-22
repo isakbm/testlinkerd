@@ -1,0 +1,4 @@
+configMapGenerator:
+- name: ca-crt
+  files:
+  - tls.crt

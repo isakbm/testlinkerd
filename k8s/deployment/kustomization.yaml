@@ -1,3 +1,7 @@
+namespace: testlinkerd
+bases:
+  - ../../services/web
+  - ../../.ca
 resources:
   - namespace.yaml
   - world.yaml

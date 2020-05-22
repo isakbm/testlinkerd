@@ -1,0 +1,5 @@
+secretGenerator:
+- name: web-tls
+  files:
+  - tls.crt
+  - tls.key

@@ -20,4 +20,4 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
         - --target
-        - world:50040
+        - world.testlinkerd:50040

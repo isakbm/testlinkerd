@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
-  namespace: testlinkerd
   labels:
     app.kubernetes.io/name: web
     app.kubernetes.io/part-of: testlinkerd
@@ -24,12 +23,19 @@ spec:
         args:
         - --target
         - world:50040
+        volumeMounts:
+        - name: app-tls
+          mountPath: "/creds"
+          readOnly: true
+      volumes:
+      - name: app-tls
+        secret:
+          secretName: web-tls
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: web
-  namespace: testlinkerd
 spec:
   selector:
     app: web

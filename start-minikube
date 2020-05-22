@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm services/*/.image.was.built
+minikube start --memory="16g" && \
+minikube addons enable ingress && \
+linkerd install | kubectl apply -f -

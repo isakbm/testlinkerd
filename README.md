@@ -40,7 +40,7 @@ or use go get:
 
 To deploy simply run
 
-```./deploy```
+```./depl```
 
 
 [go]: https://golang.org/
@@ -52,3 +52,15 @@ To deploy simply run
 [protoc]:  https://developers.google.com/protocol-buffers
 [protoc-gen-go]: https://github.com/golang/protobuf
 [kubernetes]: https://kubernetes.io/docs/reference/
+
+### Issues
+
+If you do not already have a minikube cluster running, or if otherwise
+you are having issues with minikube, do
+
+```minikube delete```
+
+```./start-minikube```
+
+Note that running certain minikube commands fail if there is a file or directory
+named deploy. Therefore the deploy script is called depl.

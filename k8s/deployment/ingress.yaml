@@ -2,21 +2,26 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: web-ingress
-  namespace: testlinkerd
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/grpc-backend: "true"
+    # nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
       grpc_set_header l5d-dst-override $service_name.$namespace.svc.cluster.local:$service_port;
 spec:
+  # tls:
+  # - hosts:
+  #     - web
+  #   secretName: web-tls
   rules:
-  - host: testlinkerd.com
+  - host: web
     http:
       paths:
       - path: /
         backend:
-          serviceName: web
-          servicePort: 8080
+          serviceName: world
+          servicePort: 50040
       # - path: /sa
       #   backend:
       #     serviceName: another-svc
